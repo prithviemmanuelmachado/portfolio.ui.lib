@@ -1,0 +1,14 @@
+name: Issue Status Sync
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    branches: [main]
+
+jobs:
+  sync:
+    uses: prithviemmanuelmachado/portfolio.infra/.github/workflows/issue-sync.yml@main
+    with:
+      project-number: 1
+    secrets:
+      projects-token: ${{ secrets.PROJECTS_TOKEN }}
