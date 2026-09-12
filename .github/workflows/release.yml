@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    uses: prithviemmanuelmachado/portfolio.infra/.github/workflows/semantic-version.yml@main
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+  # bump-version-file:
+  #   needs: release
+  #   if: needs.release.outputs.released == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with: { ref: main }
+  #     - run: echo "Releasing ${{ needs.release.outputs.version }}"
+  #       # e.g. `npm version --no-git-tag-version`, commit + push, publish to npm, etc.
